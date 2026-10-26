@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ElementData, CATEGORY_COLORS} from '../data/elements';
 import {AtomicModelViewer} from './AtomicModelViewer';
 import {useLanguage} from '../i18n/LanguageContext';
-import {exportSectionToPDF} from '../utils/pdfExport';
+import {exportElementWith2DModelsToPDF} from '../utils/pdfExport';
 import {
   X,
   ExternalLink,
@@ -316,9 +316,8 @@ export function Sidebar({
 
         <button
           onClick={() =>
-            exportSectionToPDF(
-              `${localizedName} (${element.symbol}) - Elemento #${element.number}`,
-              `Categoria: ${getCategoryLabel(element.category)} | Massa Atômica: ${element.atomicMass} u`,
+            exportElementWith2DModelsToPDF(
+              element,
               [
                 {label: 'Número Atômico (Z)', value: element.number.toString()},
                 {label: 'Símbolo', value: element.symbol},
@@ -326,6 +325,7 @@ export function Sidebar({
                 {label: 'Massa Atômica', value: `${element.atomicMass} u`},
                 {label: 'Categoria', value: getCategoryLabel(element.category)},
                 {label: 'Configuração Eletrônica', value: element.electronicConfiguration},
+                {label: 'Camadas de Energia (K, L, M...)', value: element.electronsPerShell.join(', ')},
                 {label: 'Estado Físico a 20°C', value: getPhaseLabel(element.phase)},
                 {label: 'Ponto de Fusão', value: element.meltingPoint ? `${element.meltingPoint} K` : 'Desconhecido'},
                 {label: 'Ponto de Ebulição', value: element.boilingPoint ? `${element.boilingPoint} K` : 'Desconhecido'},
@@ -337,7 +337,7 @@ export function Sidebar({
             )
           }
           className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 transition"
-          title="Salvar Ficha do Elemento em PDF"
+          title="Salvar Ficha do Elemento em PDF com Modelos Atômicos 2D"
         >
           <FileText className="w-4 h-4 text-sky-400" />
           <span>PDF</span>

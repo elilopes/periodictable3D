@@ -16,7 +16,11 @@ import {
   FlaskConical,
   Beaker,
   Brain,
-  X
+  BookOpen,
+  X,
+  TrendingUp,
+  Radio,
+  Flame,
 } from 'lucide-react';
 
 interface FilterBarProps {
@@ -35,6 +39,10 @@ interface FilterBarProps {
   onOpenOrganic: () => void;
   onOpenInorganic: () => void;
   onOpenQuiz: () => void;
+  onOpenGlossary: () => void;
+  onOpenTrends: () => void;
+  onOpenDecay: () => void;
+  onOpenReactionLab: () => void;
   matchedCount: number;
 }
 
@@ -54,6 +62,10 @@ export function FilterBar({
   onOpenOrganic,
   onOpenInorganic,
   onOpenQuiz,
+  onOpenGlossary,
+  onOpenTrends,
+  onOpenDecay,
+  onOpenReactionLab,
   matchedCount,
 }: FilterBarProps) {
   const {t, getCategoryLabel} = useLanguage();
@@ -138,20 +150,60 @@ export function FilterBar({
             </button>
           </div>
 
+          {/* Botão Glossário de Termos Técnicos */}
+          <button
+            onClick={onOpenGlossary}
+            className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-500 hover:to-cyan-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition"
+            title="Glossário de Termos Técnicos"
+          >
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Glossário</span>
+          </button>
+
           {/* Botão Quiz & Desafio */}
           <button
             onClick={onOpenQuiz}
             className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition"
-            title="Quiz & Desafio de Estabilização 3D"
+            title="Quiz & Desafio de Estabilização"
           >
             <Brain className="w-3.5 h-3.5 animate-pulse" />
-            <span>Quiz 3D</span>
+            <span>Quiz</span>
+          </button>
+
+          {/* Botão Tendências 3D (Topografia) */}
+          <button
+            onClick={onOpenTrends}
+            className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition"
+            title="Visualizador Topográfico 3D de Tendências Periódicas"
+          >
+            <TrendingUp className="w-3.5 h-3.5" />
+            <span>Tendências 3D</span>
+          </button>
+
+          {/* Botão Decaimento Radioativo 3D */}
+          <button
+            onClick={onOpenDecay}
+            className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-600 hover:from-amber-500 hover:to-rose-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition"
+            title="Simulador 3D de Decaimento Radioativo & Transmutação Nuclear"
+          >
+            <Radio className="w-3.5 h-3.5 animate-pulse" />
+            <span>Decaimento 3D</span>
+          </button>
+
+          {/* Botão Laboratório de Reações Químicas 3D */}
+          <button
+            onClick={onOpenReactionLab}
+            className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition"
+            title="Laboratório 3D de Reações Químicas (Bancada Drag-and-Drop)"
+          >
+            <Flame className="w-3.5 h-3.5 text-amber-300" />
+            <span>Laboratório 3D</span>
           </button>
 
           {/* Botão Ligações Químicas */}
           <button
             onClick={onOpenBonds}
-            className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md transition"
+            className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5 shadow-md transition"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.app.btnBonds}</span>
