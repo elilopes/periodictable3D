@@ -1,0 +1,6 @@
+{
+  "name": "Tabela Periódica 3D Interativa",
+  "description": "Uma tabela periódica 3D interativa com modelos atômicos de Bohr.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
